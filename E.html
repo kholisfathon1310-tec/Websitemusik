@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chord Gitar E</title>
+    <style>
+      :root {
+        --color-bg: #ffffff;
+        --color-text-primary: #111827;
+        --color-text-secondary: #6b7280;
+        --color-button-bg: #111827;
+        --color-button-text: #ffffff;
+        --color-button-hover-bg: #374151;
+        --radius: 0.75rem;
+        --shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        --gap: 2.5rem;
+        --font-headline: "Poppins", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+        --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter&display=swap");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background-color: var(--color-bg);
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        padding: 3rem 1rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      main.container {
+        max-width: 900px;
+        width: 100%;
+        display: flex;
+        gap: var(--gap);
+        align-items: flex-start;
+        padding: 2rem;
+        background: #f9fafb;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .info {
+        flex: 1 1 350px;
+      }
+
+      h1 {
+        font-family: var(--font-headline);
+        font-weight: 700;
+        font-size: 4rem;
+        color: var(--color-text-primary);
+        margin: 0 0 1rem 0;
+        line-height: 1.1;
+      }
+
+      .info strong {
+        color: var(--color-text-primary);
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      ul {
+        margin-top: 0.5rem;
+        padding-left: 1.25rem;
+        color: var(--color-text-secondary);
+      }
+
+      ul li {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      button.button-back {
+        margin-top: 2rem;
+        background-color: var(--color-button-bg);
+        color: var(--color-button-text);
+        border: none;
+        padding: 0.8rem 2rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 6px rgba(17, 24, 39, 0.3);
+        user-select: none;
+      }
+
+      button.button-back:hover,
+      button.button-back:focus-visible {
+        background-color: var(--color-button-hover-bg);
+        outline: none;
+      }
+
+      .chord-diagram {
+        flex: 1 1 320px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .chord-diagram img {
+        width: 320px;
+        height: auto;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        user-select: none;
+      }
+
+      @media (max-width: 768px) {
+        main.container {
+          flex-direction: column;
+          padding: 1.5rem 1rem;
+        }
+        .chord-diagram {
+          justify-content: center;
+          margin-top: 2rem;
+        }
+        h1 {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container" role="main" aria-label="Chord Gitar E">
+      <section class="info">
+        <h1>E</h1>
+        <p><strong>Note :</strong></p>
+        <ul>
+          <li>Tekan senar 3 pada fret 1</li>
+          <li>Tekan senar 4 pada fret 2</li>
+          <li>Tekan senar 5 pada fret 2</li>
+        </ul>
+        <button
+          class="button-back"
+          type="button"
+          aria-label="Kembali ke halaman kunci"
+          onclick="goBack()"
+        >
+          BACK
+        </button>
+      </section>
+      <section class="chord-diagram">
+        <img
+          src="E.png"
+          alt="Diagram kunci gitar chord E"
+          width="320"
+          height="auto"
+        />
+      </section>
+    </main>
+
+    <script>
+      function goBack() {
+        window.location.href = "../kunci.html";
+      }
+    </script>
+  </body>
+</html>

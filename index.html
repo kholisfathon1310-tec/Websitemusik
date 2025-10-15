@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chord Musik</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #777;
+        margin-bottom: 30px;
+      }
+
+      .button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px 0;
+        transition: background-color 0.3s ease;
+      }
+
+      .belajar {
+        background-color: #0f26d4;
+      }
+
+      .chord {
+        background-color: #e13011;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Kamu Cari Apa Nihhh ?</h1>
+      <p>Belajar Music yukk...</p>
+      <button
+        class="button belajar"
+        onclick="window.location.href='second.html'"
+      >
+        Belajar
+      </button>
+      <button
+        class="button chord"
+        onclick="window.location.href='pilihlagu.html'"
+      >
+        Chord
+      </button>
+    </div>
+  </body>
+</html>

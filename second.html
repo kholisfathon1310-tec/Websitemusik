@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chord Musik</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+
+      p {
+        color: #777;
+        margin-bottom: 30px;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 30px;
+      }
+
+      .card {
+        background-color: #2356ce;
+        border-radius: 16px;
+        padding: 20px;
+        width: 160px;
+        height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        cursor: pointer; /* Change cursor to pointer */
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card img {
+        height: 150px;
+        object-fit: contain;
+        margin-bottom: 15px;
+      }
+
+      .card label {
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .back-btn {
+        background-color: #ffcead;
+        color: black;
+        border-radius: 10px;
+        padding: 10px 30px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      }
+
+      .back-btn:hover {
+        background-color: #fcbf95;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Music Apa Nih Yang Kamu Sukai ?</h1>
+      <p>engga jauh beda kok...</p>
+
+      <!-- Halaman pilihan Guitar/Bass -->
+      <div class="card-container">
+        <div
+          class="card"
+          onclick="window.location.href='tingkatan.html?instrumen=guitar'"
+        >
+          <img src="guitar.jpg" alt="Guitar" />
+          <label>Guitar</label>
+        </div>
+        <div
+          class="card"
+          onclick="window.location.href='tingkatan.html?instrumen=bass'"
+        >
+          <img src="bass.jpg" alt="Bass" />
+          <label>Bass</label>
+        </div>
+      </div>
+
+      <button class="back-btn" onclick="window.location.href='index.html'">
+        BACK
+      </button>
+    </div>
+  </body>
+</html>

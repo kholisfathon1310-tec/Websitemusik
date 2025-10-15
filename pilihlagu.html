@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Chord Musik</title>
+    <style>
+      :root {
+        --color-bg: #ffffff;
+        --color-text-primary: #111827;
+        --color-text-secondary: #6b7280;
+        --color-accent: #2563eb;
+        --color-rating-star: #fbbf24;
+        --radius-card: 0.75rem;
+        --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --font-headline: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana,
+          sans-serif;
+      }
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-headline);
+        background: var(--color-bg);
+        color: var(--color-text-secondary);
+        margin: 0;
+        padding: 2rem 1rem 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      main.container {
+        width: 100%;
+        max-width: 1200px;
+      }
+      h1 {
+        font-weight: 700;
+        font-size: 3rem;
+        color: var(--color-text-primary);
+        text-align: center;
+        margin-bottom: 2rem;
+        line-height: 1.1;
+      }
+      .search-bar {
+        margin-bottom: 3rem;
+        position: relative;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .search-bar input {
+        width: 100%;
+        padding: 14px 48px 14px 18px;
+        border-radius: var(--radius-card);
+        border: 1.5px solid #d1d5db;
+        font-size: 1rem;
+        color: var(--color-text-primary);
+        outline-offset: 2px;
+        transition: border-color 0.3s ease;
+      }
+      .search-bar input::placeholder {
+        color: #9ca3af;
+      }
+      .search-bar input:focus {
+        border-color: var(--color-accent);
+        box-shadow: 0 0 5px var(--color-accent);
+      }
+      .search-bar::after {
+        content: "🔍";
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: #9ca3af;
+        pointer-events: none;
+      }
+      .song-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .song-item {
+        background: #f9fafb;
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+      .song-item:hover {
+        box-shadow: 0 4px 14px rgba(38, 132, 255, 0.25);
+        transform: translateY(-3px);
+      }
+      .song-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.75rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        font-size: 1.125rem;
+        align-items: baseline;
+      }
+      .song-info .artist {
+        font-weight: 400;
+        color: var(--color-text-secondary);
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+      .rating {
+        font-weight: 600;
+        color: var(--color-rating-star);
+        font-size: 1.125rem;
+        white-space: nowrap;
+      }
+      .rating::before {
+        content: "⭐ ";
+      }
+      .suggestion {
+        margin-top: 4rem;
+        text-align: center;
+      }
+      .suggestion form {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #f9fafb;
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        padding: 1.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .suggestion textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-card);
+        border: 1.5px solid #d1d5db;
+        outline-offset: 2px;
+        transition: border-color 0.3s ease;
+      }
+      .suggestion textarea::placeholder {
+        color: #9ca3af;
+      }
+      .suggestion textarea:focus {
+        border-color: var(--color-accent);
+        box-shadow: 0 0 5px var(--color-accent);
+      }
+      .suggestion button {
+        align-self: flex-end;
+        background: var(--color-accent);
+        color: #ffffff;
+        border: none;
+        border-radius: var(--radius-card);
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .suggestion button:hover,
+      .suggestion button:focus {
+        background: #1e40af;
+        outline-offset: 4px;
+      }
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+        .song-info {
+          font-size: 1rem;
+        }
+        .song-info .artist {
+          font-size: 0.875rem;
+        }
+        .rating {
+          font-size: 1rem;
+        }
+        .suggestion form {
+          padding: 1rem 1rem 1.5rem;
+        }
+        .suggestion button {
+          padding: 0.5rem 1.5rem;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Kamu Cari Lagu Apa?</h1>
+
+      <section class="search-bar" role="search">
+        <input
+          id="searchInput"
+          aria-label="Cari judul atau artis"
+          placeholder="Cari judul atau artis…"
+          autocomplete="off"
+        />
+      </section>
+
+      <div id="song-list" class="song-list"></div>
+
+      <section class="suggestion">
+        <h2>Berikan Saran Lagu</h2>
+        <form id="suggestionForm">
+          <textarea
+            id="suggestionInput"
+            name="suggestion"
+            placeholder="Tulis saran lagu dan artis di sini…"
+            required
+          ></textarea>
+          <button type="submit">Kirim</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const songs = JSON.parse(localStorage.getItem("songs")) || [];
+
+        const songList = document.getElementById("song-list");
+
+        function renderSongs(songsToShow) {
+          songList.innerHTML = songsToShow
+            .map(
+              (song) => `
+        <a href="chordlagu/${song.file}" class="song-item" tabindex="0">
+          <div class="song-info">
+            ${song.title} – <span class="artist">${song.artist}</span>
+          </div>
+          <div class="rating" aria-label="Rating ${song.rating}">${song.rating}</div>
+        </a>`
+            )
+            .join("");
+        }
+
+        function filterSongs() {
+          const input = document
+            .getElementById("searchInput")
+            .value.toLowerCase()
+            .trim();
+
+          const filtered = songs.filter(
+            (song) =>
+              song.title.toLowerCase().includes(input) ||
+              song.artist.toLowerCase().includes(input)
+          );
+
+          renderSongs(filtered);
+        }
+
+        document
+          .getElementById("searchInput")
+          .addEventListener("input", filterSongs);
+
+        renderSongs(songs);
+
+        document
+          .getElementById("suggestionForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const input = document.getElementById("suggestionInput");
+            const suggestion = input.value.trim();
+
+            if (suggestion) {
+              const suggestions =
+                JSON.parse(localStorage.getItem("suggestions")) || [];
+
+              suggestions.push(suggestion);
+              localStorage.setItem("suggestions", JSON.stringify(suggestions));
+
+              alert(`Terima kasih atas saran Anda:\n"${suggestion}"`);
+
+              input.value = "";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

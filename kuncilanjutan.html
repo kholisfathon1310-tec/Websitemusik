@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chord Musik</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 800px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .chord-button {
+        padding: 15px 0;
+        font-size: 16px;
+        background-color: #ffffff;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .chord-button:hover {
+        background-color: #f0f0f0;
+      }
+
+      .selected-chord {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 50%;
+      }
+
+      .dot.active {
+        width: 25px;
+        border-radius: 6px;
+        background-color: #333;
+      }
+
+      .next-container {
+        text-align: right;
+      }
+
+      .next-button {
+        background-color: #ffcead;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .next-button:hover {
+        background-color: #fcbf95;
+      }
+
+      .back-button {
+        background-color: #ffcead;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 20px;
+      }
+
+      .back-button:hover {
+        background-color: #fcbf95;
+      }
+
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Nahh ini kuncinyaaa...</h1>
+      <p>Semoga lancar yakkk</p>
+
+      <div class="grid">
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/A-kres.html')"
+        >
+          A#
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/A-kres-m.html')"
+        >
+          A#m
+        </button>
+        <button class="chord-button" onclick="showChord('Lanjutan/Bm.html')">
+          Bm
+        </button>
+        <button class="chord-button" onclick="showChord('Lanjutan/Cm.html')">
+          Cm
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/D-kres.html')"
+        >
+          D#
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/D-kres-m.html')"
+        >
+          D#m
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/F-kres.html')"
+        >
+          F#
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/F-kres-m.html')"
+        >
+          F#m
+        </button>
+        <button class="chord-button" onclick="showChord('Lanjutan/Fm.html')">
+          Fm
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/G-kres.html')"
+        >
+          G#
+        </button>
+        <button
+          class="chord-button"
+          onclick="showChord('Lanjutan/G-kres-m.html')"
+        >
+          G#m
+        </button>
+        <button class="chord-button" onclick="showChord('Lanjutan/Gm.html')">
+          Gm
+        </button>
+      </div>
+
+      <div class="selected-chord" id="selected-chord"></div>
+      <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+      function showChord(chord) {
+        window.location.href = chord;
+      }
+
+      function goBack() {
+        const params = new URLSearchParams(window.location.search);
+        const instrumen = params.get("instrumen");
+        window.location.href = instrumen
+          ? `tingkatan.html?instrumen=${instrumen}`
+          : "tingkatan.html";
+      }
+    </script>
+  </body>
+</html>

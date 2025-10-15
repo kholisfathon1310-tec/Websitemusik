@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mychord</title>
+    <style>
+      /* Reset & base */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        background: #fff;
+        color: #6b7280;
+        font-size: 17px;
+        line-height: 1.6;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("Mychord.jpg") center center / cover no-repeat;
+        filter: brightness(0.9) blur(2px);
+        z-index: -1;
+        transform: scale(1);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: lighten;
+        opacity: 0.1;
+      }
+      a {
+        color: #2563eb;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover,
+      a:focus {
+        color: #1e40af;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        background: #c8c6c6cc;
+        backdrop-filter: saturate(180%) blur(10px);
+        border-bottom: 1px solid #e5e7eb;
+        z-index: 1000;
+      }
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #111827;
+        user-select: none;
+      }
+      nav a {
+        margin-left: 1.5rem;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem 6rem;
+      }
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem 5rem;
+      }
+      .hero h1 {
+        font-weight: 800;
+        font-size: 3.5rem;
+        color: #111827;
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        font-weight: 500;
+        color: #374151;
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+      }
+      .hero button {
+        background: #111827;
+        color: white;
+        font-weight: 600;
+        font-size: 1.125rem;
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .hero button:hover {
+        background: #30bcc1;
+        transform: scale(1.05);
+      }
+      section.features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+      .feature-card {
+        background: #f9fafb;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 8px 16px rgb(0 0 0 / 0.05);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+      .feature-card:hover {
+        box-shadow: 0 12px 24px rgb(0 0 0 / 0.1);
+        transform: translateY(-4px);
+      }
+      .feature-card h3 {
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+        color: #111827;
+      }
+      .feature-card p {
+        font-size: 1rem;
+        color: #4b5563;
+        line-height: 1.4;
+      }
+      footer {
+        text-align: center;
+        padding: 3rem 2rem;
+        color: #91959c;
+        font-size: 0.9rem;
+        user-select: none;
+      }
+      .login-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        justify-content: center;
+        align-items: center;
+      }
+      .login-form {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        position: relative;
+      }
+      .login-form h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #111827;
+      }
+      .login-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #374151;
+      }
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        box-sizing: border-box;
+      }
+      .login-form button {
+        background: #111827;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease;
+      }
+      .login-form button:hover {
+        background: #374151;
+      }
+      .close-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        color: #6b7280;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container" role="navigation" aria-label="Main navigation">
+        <div class="logo" tabindex="0">Mychord</div>
+        <nav>
+          <a id="login-link">
+            <img src="pick.png" alt="Gitar" style="width: 32px; height: 32px" />
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" role="banner" aria-label="Introduction section">
+        <h1>Buat dan Pelajari Kunci Gitar dengan Mudah</h1>
+        <p>
+          Mychord membantu Anda mempelajari dan melihat diagram kunci gitar
+          interaktif secara langsung dalam satu halaman.
+        </p>
+        <a href="index.html"><button>Mulai Sekarang</button></a>
+      </section>
+
+      <section id="features" class="features" aria-label="Fitur utama aplikasi">
+        <article class="feature-card" tabindex="0">
+          <h3>Diagram Kunci Interaktif</h3>
+          <p>
+            Lihat diagram kunci lengkap dengan not dan posisi jari rangkaian
+            chords gitar.
+          </p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>Lirik Lagu</h3>
+          <p>
+            Lihat lirik lagu yang dipilih agar memahami chord lebih mudah dan
+            tepat.
+          </p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>User Friendly</h3>
+          <p>Tampilan yang intuitif dan mudah digunakan oleh semua kalangan.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>Cepat dan Responsif</h3>
+          <p>
+            Antarmuka yang cepat dan responsif di desktop maupun perangkat
+            mobile.
+          </p>
+        </article>
+      </section>
+
+      <section
+        id="about"
+        aria-label="Tentang aplikasi"
+        style="
+          margin-top: 4rem;
+          text-align: center;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+          color: #374151;
+        "
+      >
+        <h2
+          style="
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #111827;
+          "
+        >
+          Tentang Mychord
+        </h2>
+        <p>
+          Mychord dibuat untuk memberikan kemudahan dalam belajar gitar bagi
+          pemula maupun yang sudah mahir. Dengan satu tampilan yang modern dan
+          interaktif, Anda bisa mempelajari berbagai kunci gitar tanpa perlu
+          aplikasi tambahan.
+        </p>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 Mychord. Semua hak cipta dilindungi.</footer>
+
+    <!-- Login Form (Hidden by default) -->
+    <div class="login-container" id="login-container">
+      <div class="login-form">
+        <span class="close-button" id="close-login-form">&times;</span>
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+        />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+
+        <button type="submit" id="login-button">Login</button>
+        <p id="login-error" style="color: red; display: none">
+          Username atau password salah.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Login form functionality
+      const loginLink = document.getElementById("login-link");
+      const loginContainer = document.getElementById("login-container");
+      const closeLoginForm = document.getElementById("close-login-form");
+      const loginButton = document.getElementById("login-button");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const loginError = document.getElementById("login-error");
+
+      loginLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        loginContainer.style.display = "flex";
+      });
+
+      closeLoginForm.addEventListener("click", () => {
+        loginContainer.style.display = "none";
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === loginContainer) {
+          loginContainer.style.display = "none";
+        }
+      });
+
+      loginButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        const validUsers = {
+          baskara: "secret929",
+          kirow: "gay969",
+          butong: "butongganteng808",
+        };
+
+        if (validUsers[username] === password) {
+          localStorage.setItem("isLoggedIn", "true");
+          window.location.href = "admin.html";
+        } else {
+          loginError.style.display = "block";
+        }
+      });
+
+      document.querySelectorAll("nav a[href^='#']").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

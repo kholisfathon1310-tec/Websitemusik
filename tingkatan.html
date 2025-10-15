@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chord Musik</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 50px;
+      }
+
+      .button {
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        font-size: 18px;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .button:hover {
+        transform: scale(1.03);
+      }
+
+      .pemula {
+        background-color: #1231cb;
+      }
+
+      .lanjutan {
+        background-color: #dc0f0f;
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      .back-button {
+        background-color: #ffcead;
+        color: black;
+        border-radius: 10px;
+        padding: 12px 32px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .back-button:hover {
+        background-color: #fcbf95;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pilih Tingkatan Yang Kamu Mau</h1>
+      <p>Belajar Pelan Pelan aja yooa...</p>
+
+      <button class="button pemula" onclick="goToBelajar('pemula')">
+        Pemula
+      </button>
+      <button class="button lanjutan" onclick="goToBelajar('lanjutan')">
+        Lanjutan
+      </button>
+
+      <div class="navigation">
+        <button class="back-button" onclick="goBackToSecondPage()">BACK</button>
+      </div>
+    </div>
+
+    <script>
+  // Ambil parameter dari URL
+  const params = new URLSearchParams(window.location.search);
+  const instrumen = params.get("instrumen");
+
+  if (instrumen) {
+    document.querySelector("p").innerText = `Belajar ${
+      instrumen.charAt(0).toUpperCase() + instrumen.slice(1)
+    } Pelan Pelan aja yooa...`;
+  }
+
+  function goToBelajar(level) {
+    if (level === "pemula") {
+      window.location.href = `kunci.html?instrumen=${instrumen}&level=pemula`;
+    } else {
+      window.location.href = `belajar.html?instrumen=${instrumen}&level=${level}`;
+    }
+  }
+  function goToBelajar(level) {
+    if (level === "pemula") {
+      window.location.href = `kunci.html?instrumen=${instrumen}&level=pemula`;
+    } else if (level === "lanjutan") {
+      window.location.href = `kuncilanjutan.html?instrumen=${instrumen}&level=lanjutan`;
+    }
+}
+
+  // Fungsi untuk kembali ke halaman pilihan instrumen
+  function goBackToSecondPage() {
+    window.location.href = "second.html";
+  }
+</script>
+
+    </script>
+  </body>
+</html>

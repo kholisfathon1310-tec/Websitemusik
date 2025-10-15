@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chord Gitar Pastikan Riuh Akhiri Malammu</title>
+    <style>
+      /* CSS untuk Chord Gitar */
+      :root {
+        --color-bg: #ffffff;
+        --color-text-primary: #111827;
+        --color-text-secondary: #6b7280;
+        --color-accent: #d90000;
+        --radius-card: 0.75rem;
+        --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --font-heading: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text-secondary);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        margin: 0;
+        padding: 2rem 1rem 4rem;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        background: #fff;
+        max-width: 800px;
+        width: 100%;
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        padding: 2.5rem 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 3rem;
+        color: var(--color-text-primary);
+        text-align: center;
+        margin: 0;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 1rem;
+        padding: 0.5rem 0.8rem;
+        background-color: var(--color-accent);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-card);
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        user-select: none;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        background-color: #d90000;
+        outline-offset: 3px;
+        outline: 2px solid #d90000;
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+      }
+
+      .chord-content {
+        font-family: monospace;
+        font-size: 16px;
+        color: var(--color-text-primary);
+        line-height: 1.7;
+        white-space: pre-wrap;
+        overflow-y: auto;
+        max-height: 400px;
+        border: 1.5px solid #e5e7eb;
+        border-radius: var(--radius-card);
+        padding: 1.2rem 1.5rem;
+        user-select: text;
+        position: relative;
+        transition: font-size 0.3s ease;
+      }
+
+      .capo {
+        color: hsl(0, 78%, 35%);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .autoscroll-indicator {
+        position: absolute;
+        bottom: 8px;
+        right: 12px;
+        font-size: 0.85rem;
+        color: #6b7280;
+        font-style: italic;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      /* CSS untuk Umpan Balik Pengguna */
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9fafb;
+        margin: 0;
+        padding: 2rem;
+        color: #111827;
+      }
+
+      .feedback {
+        border-top: 1px solid #e5e7eb;
+        padding-top: 1.5rem;
+      }
+
+      .feedback-input {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .feedback-input input {
+        flex: 1;
+        padding: 0.6rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 9999px;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      .feedback-input button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.3rem;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+      }
+
+      .feedback-input button:hover {
+        background: #f3f4f6;
+      }
+
+      .feedback-input button svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .feedback-rating label {
+        font-size: 0.95rem;
+        color: #6b7280;
+        display: block;
+        margin-bottom: 0.4rem;
+      }
+
+      .stars {
+        display: flex;
+        gap: 0.3rem;
+        font-size: 1.5rem;
+        color: #d1d5db;
+        cursor: pointer;
+      }
+
+      .stars span.selected {
+        color: #fbbf24;
+      }
+
+      .feedback-list {
+        border-top: 1px solid #e5e7eb;
+        padding-top: 1rem;
+      }
+
+      .feedback-item {
+        margin-bottom: 1rem;
+      }
+
+      .feedback-item .stars {
+        font-size: 1.2rem;
+        pointer-events: none;
+      }
+
+      .feedback-item p {
+        margin: 0.3rem 0 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="container" role="main">
+        <h1>Perunggu - Pastikan Riuh Akhiri Malammu</h1>
+
+        <section class="controls" aria-label="Kontrol lebar dan auto scroll">
+          <button
+            class="btn"
+            type="button"
+            id="zoomOutBtn"
+            aria-label="Perkecil ukuran font"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="11" width="14" height="2"></rect></svg
+            >Perkecil
+          </button>
+          <button
+            class="btn"
+            type="button"
+            id="zoomInBtn"
+            aria-label="Perbesar ukuran font"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="11" y="5" width="2" height="14"></rect>
+              <rect x="5" y="11" width="14" height="2"></rect></svg
+            >Perbesar
+          </button>
+          <button
+            class="btn"
+            type="button"
+            id="autoScrollBtn"
+            aria-pressed="false"
+            aria-label="Mulai auto scroll"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polygon points="8 5 19 12 8 19" fill="currentColor" /></svg
+            >Play
+          </button>
+          <button
+            class="btn"
+            type="button"
+            id="stopScrollBtn"
+            aria-label="Stop auto scroll"
+            disabled
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect
+                x="6"
+                y="6"
+                width="12"
+                height="12"
+                fill="currentColor"
+              ></rect></svg
+            >Stop
+          </button>
+          <select
+            class="btn"
+            id="scrollSpeedSelect"
+            aria-label="Pilih kecepatan auto scroll"
+          >
+            <option value="30">Lambat</option>
+            <option value="20" selected>Sedang</option>
+            <option value="10">Cepat</option>
+          </select>
+        </section>
+
+        <section
+          class="chord-content"
+          id="chordContent"
+          tabindex="0"
+          aria-live="polite"
+          aria-atomic="false"
+        >
+          <pre>
+
+[Verse 1]
+C               Em
+Tumbuhlah mendaki
+C            Em
+Seribu upaya 'kan kau nikmati
+C              Em
+Besok hari Senin
+C             G
+Kutemani senyummu seperti kemarin
+ 
+[Pre-Chorus]
+F#m             Bm
+Silih berganti ruang kaupenuhi
+F#m             Bm
+Ku perlu hadir di semua yang kau tangisi
+F#m             Bm
+Panggil aku kapanpun kutemani
+F#m             Bm             
+Pastikan riuh akhiri malammu lagi
+ 
+[Chorus]
+        C#m                 D#m
+Melantunlah semerdu mungkin (melantunlah)
+        C#m                 D#m
+Merdumu yang buatku pulih (melantunlah)
+        C#m                 D#m
+Genggam jariku seeratnya (melantunlah)
+        C#m
+Kubuat angin berpihak gerak searah
+ 
+[Interlude]
+C               Em
+C               Em
+C               Em
+C               Em
+C               G
+ 
+[Pre-Chorus]
+F#m             Bm
+Silih berganti ruang kaupenuhi
+F#m             Bm
+Ku perlu hadir di semua yang kau tangisi
+F#m             Bm
+Panggil aku kapanpun kutemani
+F#m             Bm             
+Pastikan riuh akhiri malammu lagi
+ 
+[Chorus]
+        C#m                 D#m
+Melantunlah semerdu mungkin (melantunlah)
+        C#m                 D#m
+Merdumu yang buatku pulih (melantunlah)
+        C#m                 D#m
+Genggam jariku seeratnya (melantunlah)
+        C#m                 D#m
+Kubuat angin berpihak gerak searah
+ 
+[Chorus]
+        C#m                 D#m
+Melantunlah semerdu mungkin (melantunlah)
+        C#m                 D#m
+Merdumu yang buatku pulih (melantunlah)
+        C#m                 D#m
+Genggam jariku seeratnya (melantunlah)
+        C#m           C
+Kubuat angin berpihak gerak searah
+</pre
+          >
+        </section>
+      </div>
+
+      <div class="container">
+        <h2>Komentar</h2>
+
+        <section class="feedback" aria-label="Umpan balik pengguna">
+          <div class="feedback-input">
+            <input
+              type="text"
+              id="feedbackText"
+              placeholder="Bagaimana pengalaman Anda?"
+            />
+            <button id="submitFeedback" aria-label="Kirim umpan balik">
+              <svg viewBox="0 0 24 24" fill="#6b7280">
+                <polygon points="2,21 23,12 2,3 2,10 17,12 2,14" />
+              </svg>
+            </button>
+          </div>
+          <div class="feedback-rating">
+            <label for="starRating">Rating</label>
+            <div class="stars" id="starRating">
+              <span data-value="1">★</span>
+              <span data-value="2">★</span>
+              <span data-value="3">★</span>
+              <span data-value="4">★</span>
+              <span data-value="5">★</span>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="feedback-list"
+          id="feedbackList"
+          aria-label="Daftar umpan balik"
+        >
+          <!-- Feedback ditambahkan di sini -->
+        </section>
+      </div>
+    </main>
+
+    <script>
+      // Script untuk Chord Gitar
+      (function () {
+        const chordContent = document.getElementById("chordContent");
+        const zoomInBtn = document.getElementById("zoomInBtn");
+        const zoomOutBtn = document.getElementById("zoomOutBtn");
+        const autoScrollBtn = document.getElementById("autoScrollBtn");
+        const stopScrollBtn = document.getElementById("stopScrollBtn");
+        const scrollSpeedSelect = document.getElementById("scrollSpeedSelect");
+
+        const MIN_FONT_SIZE = 12;
+        const MAX_FONT_SIZE = 26;
+        let currentFontSize = 16;
+
+        let autoScrollInterval = null;
+
+        zoomInBtn.addEventListener("click", () => {
+          if (currentFontSize < MAX_FONT_SIZE) {
+            currentFontSize += 2;
+            chordContent.style.fontSize = currentFontSize + "px";
+            chordContent.style.lineHeight =
+              (currentFontSize * 1.7) / currentFontSize + "";
+          }
+        });
+
+        zoomOutBtn.addEventListener("click", () => {
+          if (currentFontSize > MIN_FONT_SIZE) {
+            currentFontSize -= 2;
+            chordContent.style.fontSize = currentFontSize + "px";
+            chordContent.style.lineHeight =
+              (currentFontSize * 1.7) / currentFontSize + "";
+          }
+        });
+
+        autoScrollBtn.addEventListener("click", () => {
+          if (autoScrollInterval) return;
+          autoScrollBtn.setAttribute("aria-pressed", "true");
+          autoScrollBtn.disabled = true;
+          stopScrollBtn.disabled = false;
+          const speedValue = parseInt(scrollSpeedSelect.value, 10);
+
+          autoScrollInterval = setInterval(() => {
+            if (
+              chordContent.scrollTop + chordContent.clientHeight >=
+              chordContent.scrollHeight
+            ) {
+              stopAutoScroll();
+            } else {
+              chordContent.scrollTop += 1;
+            }
+          }, speedValue);
+        });
+
+        stopScrollBtn.addEventListener("click", () => {
+          stopAutoScroll();
+        });
+
+        function stopAutoScroll() {
+          if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+          }
+          autoScrollBtn.setAttribute("aria-pressed", "false");
+          autoScrollBtn.disabled = false;
+          stopScrollBtn.disabled = true;
+        }
+
+        stopScrollBtn.disabled = true;
+
+        scrollSpeedSelect.addEventListener("change", () => {
+          if (autoScrollInterval) {
+            stopAutoScroll();
+            autoScrollBtn.click();
+          }
+        });
+      })();
+
+      // Script untuk Umpan Balik Pengguna
+      const laguId = "Pastikan riuh malammu";
+
+      const stars = document.querySelectorAll("#starRating span");
+      let selectedRating = 0;
+
+      // Fungsi untuk menyimpan feedback ke localStorage
+      function saveFeedbacks(feedbacks) {
+        localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+      }
+
+      // Fungsi untuk mendapatkan feedback dari localStorage
+      function getFeedbacks() {
+        return JSON.parse(localStorage.getItem("feedbacks")) || [];
+      }
+
+      // Fungsi untuk menampilkan feedback yang tersedia HANYA untuk lagu saat ini
+      function renderFeedbacks() {
+        const feedbackList = document.getElementById("feedbackList");
+        feedbackList.innerHTML = "";
+        const feedbacks = getFeedbacks();
+
+        // Filter berdasarkan laguId
+        const songFeedbacks = feedbacks.filter(
+          (item) => item.laguId === laguId
+        );
+
+        songFeedbacks.forEach((item) => {
+          const newFeedback = document.createElement("div");
+          newFeedback.classList.add("feedback-item");
+          let starsDisplay = "";
+          for (let i = 1; i <= 5; i++) {
+            if (i <= item.rating) {
+              starsDisplay += '<span class="selected">★</span>';
+            } else {
+              starsDisplay += "<span>★</span>";
+            }
+          }
+          newFeedback.innerHTML = `
+                <div class="stars">${starsDisplay}</div>
+                <p>${item.text}</p>`;
+          feedbackList.prepend(newFeedback);
+        });
+      }
+
+      // Rating picker
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          selectedRating = parseInt(star.getAttribute("data-value"), 10);
+          stars.forEach((s) => {
+            s.classList.toggle(
+              "selected",
+              parseInt(s.getAttribute("data-value"), 10) <= selectedRating
+            );
+          });
+        });
+      });
+
+      // Submit
+      document
+        .getElementById("submitFeedback")
+        .addEventListener("click", () => {
+          const feedbackText = document
+            .getElementById("feedbackText")
+            .value.trim();
+
+          if (feedbackText && selectedRating > 0) {
+            const feedbacks = getFeedbacks();
+
+            // Simpan bersama dengan laguId
+            feedbacks.push({
+              text: feedbackText,
+              rating: selectedRating,
+              laguId: laguId,
+            });
+
+            saveFeedbacks(feedbacks);
+            renderFeedbacks();
+
+            // Reset input
+            document.getElementById("feedbackText").value = "";
+            selectedRating = 0;
+            stars.forEach((s) => s.classList.remove("selected"));
+          } else {
+            alert("Mohon isi umpan balik dan berikan rating.");
+          }
+        });
+
+      // Tampilkan feedback yang tersedia saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", renderFeedbacks);
+    </script>
+  </body>
+</html>
